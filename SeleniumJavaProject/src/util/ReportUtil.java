@@ -39,7 +39,7 @@ public class ReportUtil {
 	
 	private void setReportFileFullPath() {
 		//reportFileFullPath="C:\\Users\\Azuce\\Google Drive\\TATA\\WorkSpaceBasic\\FrameworkTCS\\report\\";
-		  reportFileFullPath="C:\\Users\\olaez\\IdeProject\\SeleniumAndJava\\SeleniumJavaProject\\report";
+		  reportFileFullPath="C:\\Users\\olaez\\IdeProject\\SeleniumAndJava\\SeleniumJavaProject\\report\\";
 				reportFileFullPath=reportFileFullPath+reportFileName+DateTimeUtil.getCurrentDateTime()+".rft";
 	}
 	
