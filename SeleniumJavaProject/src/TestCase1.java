@@ -6,22 +6,25 @@ import util.ReportUtil;
 import base.BaseCase;
 import base.BaseDriver;
 import pageObjects.Main_Page;
+import org.testng.Assert;
 
 public class TestCase1
 {
 
     //ReportUtil reporter=new ReportUtil("TestCase1", "C:\\Users\\olaez\\IdeProject\\SeleniumAndJava\\SeleniumJavaProject\\report");
     //protected BaseDriver bd;
+
+
+
     public static void main(String[] args)
     {
 
+
         BaseCase bc=new BaseCase();
 
+        final String dir = System.getProperty("user.dir");
 
-        ReportUtil reporter=new ReportUtil("TestCase1", "C:\\Users\\olaez\\IdeProject\\SeleniumAndJava\\SeleniumJavaProject\\report");
-
-
-
+        ReportUtil reporter=new ReportUtil("TestCase1", dir+"\\report");
         System.setProperty("webdriver.chrome.driver", "C:/Users/olaez/IdeProject/SeleniumAndJava/SeleniumJavaProject/driver/chromedriver.exe");
         WebDriver driver =new ChromeDriver();
         BaseDriver bd2=new BaseDriver(driver);
@@ -30,12 +33,22 @@ public class TestCase1
         driver.get(appUrl);
         driver.manage().window().maximize();
 
+
+
+
+
         bc.setReporter(reporter);
         reporter.printExpectResult("Should be displayed the URL");
         reporter.printStep("User access to the Website", 1);
 
+
+        String expectedTitle = "Cologuard® For HCPs | Colorectal Cancer (CRC) Screening Test";
+        String originalTitle = driver.getTitle();
+        Assert.assertEquals(originalTitle, expectedTitle, "Titles of the website do not match..");
+        System.out.println("AssertEquals Test Passed\n");
+
         //Identify the Element
-        WebElement frmPolicy= bd2.findElement(By.xpath("/html/body/div[3]/div[2]/div/div"));
+        WebElement frmPolicy= bd2.findElement(By.xpath("//*[@id=\"onetrust-accept-btn-handler\"]"));
         bd2.elementHighlightBorderRed(frmPolicy);
 
         WebElement btnPolicy=mp.getBtnPolicy();
@@ -54,7 +67,8 @@ public class TestCase1
         bd2.elementHighlightBorderBlue(MnuCRCRise);
         reporter.printStep("User Clicks on CRC Rise Menu", 2);
         reporter.printImageIntoReport(bd2.getCaptureScreenshotFile());
-        reporter.printActualResult("User is able to Perform Click on the Menu");
+        reporter.printActualResult("User is able to perform click in the  \"CRC on the RISE menu\" ");
+
 
 
         MnuCRCRise.click();

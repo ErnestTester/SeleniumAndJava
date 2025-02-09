@@ -1,5 +1,7 @@
 package util;
 
+import java.awt.desktop.SystemEventListener;
+import java.io.Console;
 import java.io.File;
 import java.io.FileOutputStream;
 
@@ -37,12 +39,16 @@ public class ReportUtil {
 		setReportFile();
 	}
 	
-	private void setReportFileFullPath() {
+	private void setReportFileFullPath()
+	{
+
 		//reportFileFullPath="C:\\Users\\Azuce\\Google Drive\\TATA\\WorkSpaceBasic\\FrameworkTCS\\report\\";
-		  reportFileFullPath="C:\\Users\\olaez\\IdeProject\\SeleniumAndJava\\SeleniumJavaProject\\report\\";
+		final String dir = System.getProperty("user.dir");
+		  //reportFileFullPath="C:\\Users\\olaez\\IdeProject\\SeleniumAndJava\\SeleniumJavaProject\\report\\";
+		reportFileFullPath=dir+"\\report\\";
 				reportFileFullPath=reportFileFullPath+reportFileName+DateTimeUtil.getCurrentDateTime()+".rft";
 	}
-	
+
 	private void setReportFile() {
 		try {
 			File report_file=new File(reportFileFullPath);
